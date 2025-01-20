@@ -17,13 +17,10 @@
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background: linear-gradient(to right, green, #60a5fa);
+}
+.email button{
+  background: linear-gradient(to right, green, #60a5fa);
 }
 
 @layer utilities {

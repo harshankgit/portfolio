@@ -13,6 +13,15 @@ const config: Config = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      fontFamily: {
+        sans: ["ui-sans-serif", "system-ui"],
+        kaushan: ["Kaushan Script"],
+      },
+      colors: {
+        green: {
+          DEFAULT: "#00f260",
+        },
+      },
     },
   },
   plugins: [],
