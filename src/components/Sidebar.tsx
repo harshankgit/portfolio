@@ -9,13 +9,19 @@ import { GoLocation } from "react-icons/go";
 const Sidebar = () => {
   return (
     <>
-      <Image
-        src={ImgSelf}
-        alt="Self img"
-        height={200}
-        width={200}
-        className="w-32 h-32 mx-auto border rounded-full "
-      />
+      <div className="relative flex justify-center items-center">
+        {/* Rotating Border */}
+        <div className="absolute w-40 h-40 border-4 border-t-green-500 border-r-transparent border-b-green-500 border-l-transparent rounded-full animate-spin"></div>
+
+        {/* Image */}
+        <Image
+          src={ImgSelf}
+          alt="Self img"
+          height={200}
+          width={200}
+          className="w-32 h-32 mx-auto border rounded-full"
+        />
+      </div>
       <h3 className="my-4 text-3xl font-medium tracking-wider font-kaushan">
         <span className="text-green ">Harshank</span> Kanungo
       </h3>
@@ -70,7 +76,6 @@ const Sidebar = () => {
       {/* Email Button */}
 
       <div className="email">
-     
         <button
           className="w-8/12 px-5 py-2 text-white bg-black rounded-full cursor-pointer bg-gradient-to-r from-green to-blue-500 hover:scale-105 focus:outline-none"
           onClick={() => window.open("mailto:harshankkanungo259@gmail.com")}

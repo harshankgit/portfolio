@@ -19,7 +19,7 @@
 body {
   background: linear-gradient(to right, green, #60a5fa);
 }
-.email button{
+.email button {
   background: linear-gradient(to right, green, #60a5fa);
 }
 
@@ -27,4 +27,32 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+@keyframes spin-slow {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 4s linear infinite;
+}
+
+@keyframes fade-in-up {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.6s ease-out forwards;
 }
