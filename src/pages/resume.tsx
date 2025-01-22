@@ -1,6 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
+import { FaPhone, FaEnvelope, FaGlobe, FaMapMarkerAlt } from "react-icons/fa";
 
 const ResumePage = () => {
+  const [showExperience, setShowExperience] = useState(true);
+  const [showEducation, setShowEducation] = useState(true);
+
   const personalDetails = {
     name: "Harshank Kanungo",
     contact: {
@@ -52,20 +56,13 @@ const ResumePage = () => {
         description:
           "Developed skills in HTML, CSS, JavaScript, React during BasketHunt Pvt Ltd internship.",
       },
-      {
-        role: "Frontend Development Intern",
-        company: "BasketHunt Pvt Ltd",
-        duration: "03/2024 - 04/2024",
-        description:
-          "Developed skills in HTML, CSS, JavaScript, React during Tech Alpha internship.",
-      },
     ],
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-10">
-      <div className="max-w-5xl mx-auto bg-white p-8 shadow-xl rounded-lg transform transition-all duration-300 hover:scale-105 hover:shadow-2xl">
-        <h1 className="text-4xl font-bold text-center text-gray-800 mb-6">
+    <div className="min-h-screen bg-gradient-to-r from-blue-100 to-blue-200 py-10">
+      <div className="max-w-5xl mx-auto bg-white p-8 shadow-xl rounded-lg hover:shadow-2xl transition-all">
+        <h1 className="text-4xl font-bold text-center text-blue-800 mb-6">
           {personalDetails.name}
         </h1>
         <p className="text-center text-gray-600 mb-8 italic">
@@ -73,72 +70,84 @@ const ResumePage = () => {
         </p>
 
         <div className="mb-8">
-          <h2 className="text-2xl font-semibold text-gray-700 border-b-2 border-gray-200 pb-2 mb-4">
+          <h2 className="text-2xl font-semibold text-gray-700 pb-2">
             Contact Information
           </h2>
-          <ul className="text-gray-600">
-            <li>
-              <strong>Phone:</strong> {personalDetails.contact.phone.join(", ")}
+          <ul className="text-gray-600 space-y-2 mt-4">
+            <li className="flex items-center gap-2">
+              <FaPhone className="text-blue-500" />
+              {personalDetails.contact.phone.join(", ")}
             </li>
-            <li>
-              <strong>Email:</strong> {personalDetails.contact.email}
+            <li className="flex items-center gap-2">
+              <FaEnvelope className="text-blue-500" />
+              {personalDetails.contact.email}
             </li>
-            <li>
-              <strong>Website:</strong> {personalDetails.contact.website}
+            <li className="flex items-center gap-2">
+              <FaGlobe className="text-blue-500" />
+              {personalDetails.contact.website}
             </li>
-            <li>
-              <strong>Address:</strong> {personalDetails.contact.address}
+            <li className="flex items-center gap-2">
+              <FaMapMarkerAlt className="text-blue-500" />
+              {personalDetails.contact.address}
             </li>
           </ul>
         </div>
 
         <div className="mb-8">
-          <h2 className="text-2xl font-semibold text-gray-700 border-b-2 border-gray-200 pb-2 mb-4">
-            Skills
-          </h2>
-          <ul className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 text-gray-600">
+          <h2 className="text-2xl font-semibold text-gray-700 pb-2">Skills</h2>
+          <ul className="grid grid-cols-2 gap-4 text-gray-600 mt-4">
             {personalDetails.skills.map((skill, index) => (
               <li
                 key={index}
-                className="flex items-center justify-center gap-2"
+                className="bg-blue-100 text-blue-700 px-4 py-2 rounded-full shadow-sm hover:bg-blue-200 transition-all"
               >
-                <span className="bg-blue-200 text-blue-800 px-4 py-2 rounded-full text-sm shadow-md hover:bg-blue-300 transition-all duration-300">
-                  {skill}
-                </span>
+                {skill}
               </li>
             ))}
           </ul>
         </div>
 
         <div className="mb-8">
-          <h2 className="text-2xl font-semibold text-gray-700 border-b-2 border-gray-200 pb-2 mb-4">
+          <h2
+            className="text-2xl font-semibold text-gray-700 cursor-pointer"
+            onClick={() => setShowEducation(!showEducation)}
+          >
             Education
+            <span className="text-sm text-gray-500 ml-2">
+              (Click to {showEducation ? "hide" : "show"})
+            </span>
           </h2>
-          {personalDetails.education.map((edu, index) => (
-            <div key={index} className="mb-4">
-              <h3 className="text-xl font-medium text-gray-800">
-                {edu.degree}
-              </h3>
-              <p className="text-gray-600">{edu.institution}</p>
-              <p className="text-sm text-gray-500">
-                {edu.duration} - <strong>{edu.grade}</strong>
-              </p>
-            </div>
-          ))}
+          {showEducation &&
+            personalDetails.education.map((edu, index) => (
+              <div key={index} className="mt-4">
+                <h3 className="text-xl font-medium">{edu.degree}</h3>
+                <p>{edu.institution}</p>
+                <p className="text-sm text-gray-500">
+                  {edu.duration} - <strong>{edu.grade}</strong>
+                </p>
+              </div>
+            ))}
         </div>
 
         <div>
-          <h2 className="text-2xl font-semibold text-gray-700 border-b-2 border-gray-200 pb-2 mb-4">
+          <h2
+            className="text-2xl font-semibold text-gray-700 cursor-pointer"
+            onClick={() => setShowExperience(!showExperience)}
+          >
             Work Experience
+            <span className="text-sm text-gray-500 ml-2">
+              (Click to {showExperience ? "hide" : "show"})
+            </span>
           </h2>
-          {personalDetails.experience.map((exp, index) => (
-            <div key={index} className="mb-6 border-b-2 border-gray-200 pb-4">
-              <h3 className="text-xl font-medium text-gray-800">{exp.role}</h3>
-              <p className="text-gray-600">{exp.company}</p>
-              <p className="text-sm text-gray-500 mb-2">{exp.duration}</p>
-              <p className="text-gray-600">{exp.description}</p>
-            </div>
-          ))}
+          {showExperience &&
+            personalDetails.experience.map((exp, index) => (
+              <div key={index} className="mt-4">
+                <h3 className="text-xl font-medium">{exp.role}</h3>
+                <p>{exp.company}</p>
+                <p className="text-sm text-gray-500">{exp.duration}</p>
+                <p>{exp.description}</p>
+              </div>
+            ))}
         </div>
       </div>
     </div>
