@@ -39,7 +39,7 @@ const projects = [
     description:
       "Designed and built a live weather tracking website using modern APIs to provide real-time weather updates and forecasts.",
     technologies: ["HTML", "CSS", "React.js", "Weather API", "Responsive UI"],
-    deployment: "Hosted for public use with accurate weather data updates",
+    deployment: "Deployed on Vercel for demonstration purposes",
     image:
       "https://s.cafebazaar.ir/images/upload/screenshot/forecast.weather.live-7f8f298e-838e-45ab-9a9e-5bb2842c6ce5.jpeg?x-img=v1/resize,h_600,lossless_false/optimize",
   },
