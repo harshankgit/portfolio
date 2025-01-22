@@ -57,13 +57,7 @@ const ResumePage = () => {
         description:
           "Gained real-time experience in React.js, working on dynamic web applications and enhancing frontend capabilities.",
       },
-      {
-        role: "Frontend Developer",
-        company: "IndiaNic Infotech Limited",
-        duration: "04/2024 - Present",
-        description:
-          "Gained real-time experience in React.js, working on dynamic web applications and enhancing frontend capabilities.",
-      },
+    
       {
         role: "Frontend Development Intern",
         company: "BasketHunt Pvt Ltd",
@@ -231,9 +225,7 @@ const ResumePage = () => {
                 <h3 className="text-xl font-medium">
                   Frontend Web Development Using JavaScript and React Bootcamp
                 </h3>
-                <p className="text-sm text-gray-500">
-                  Institution: Bootcamp
-                </p>
+                <p className="text-sm text-gray-500">Institution: Bootcamp</p>
                 <p className="text-sm text-gray-500">Date: 2023</p>
               </div>
 
@@ -241,9 +233,7 @@ const ResumePage = () => {
                 <h3 className="text-xl font-medium">
                   Instagram Clone Using HTML & CSS Bootcamp
                 </h3>
-                <p className="text-sm text-gray-500">
-                  Institution: Bootcamp
-                </p>
+                <p className="text-sm text-gray-500">Institution: Bootcamp</p>
                 <p className="text-sm text-gray-500">Date: 2023</p>
               </div>
 
