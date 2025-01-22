@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { FaPhone, FaEnvelope, FaGlobe, FaMapMarkerAlt } from "react-icons/fa";
 
@@ -42,6 +43,13 @@ const ResumePage = () => {
       },
     ],
     experience: [
+      {
+        role: "Frontend Developer",
+        company: "IndiaNic Infotech Limited",
+        duration: "04/2024 - Present",
+        description:
+          "Gained real-time experience in React.js, working on dynamic web applications and enhancing frontend capabilities.",
+      },
       {
         role: "Frontend Developer",
         company: "IndiaNic Infotech Limited",

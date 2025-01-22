@@ -38,7 +38,7 @@ export default function Home() {
     <main>
       <div className="flex flex-col flex-grow px-6 pt-1">
         <h6 className="my-3 text-base font-medium">
-          With over 1.3+ year of professional experience, including a 06-month
+          With over 1.4+ year of professional experience, including a 06-month
           internship and 09+ months of hands-on work on real-time projects at
           IndiaNic Infotech Limited, where I am currently employed, I am eager
           to further advance my career. I am seeking a new opportunity where I
