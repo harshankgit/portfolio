@@ -80,11 +80,20 @@ const ResumePage = () => {
             </li>
             <li className="flex items-center gap-2">
               <FaEnvelope className="text-blue-500" />
-              {personalDetails.contact.email}
+              <span
+                onClick={() =>
+                  window.open("mailto:harshankkanungo259@gmail.com")
+                }
+              >
+                {" "}
+                {personalDetails.contact.email}
+              </span>
             </li>
             <li className="flex items-center gap-2">
               <FaGlobe className="text-blue-500" />
-              {personalDetails.contact.website}
+              <a href="https://www.linkedin.com/in/harshank-kanungo-a4b178251/">
+                {personalDetails.contact.website}
+              </a>
             </li>
             <li className="flex items-center gap-2">
               <FaMapMarkerAlt className="text-blue-500" />

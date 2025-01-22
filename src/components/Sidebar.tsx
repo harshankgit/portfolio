@@ -54,17 +54,23 @@ const Sidebar = () => {
           <GoLocation className="mr-2" /> <span>Ahmedabad,India </span>
         </div>
         <div className="flex items-center justify-center">
-          <FaEnvelope className="mr-2" /> <span> code.sumax@gmail.com </span>
+          <FaEnvelope className="mr-2" />{" "}
+          <span
+            onClick={() => window.open("mailto:harshankkanungo259@gmail.com")}
+          >
+            {" "}
+            harshankkanungo259@gmail.com{" "}
+          </span>
         </div>
         <div className="flex items-center justify-center">
-          <FaPhoneAlt className="mr-2" /> <span> 8514961665 / 8640960375 </span>
+          <FaPhoneAlt className="mr-2" /> <span> 8109774968 / 8965992035 </span>
         </div>
       </div>
 
       {/* Email Button */}
 
       <div className="email">
-        {" "}
+     
         <button
           className="w-8/12 px-5 py-2 text-white bg-black rounded-full cursor-pointer bg-gradient-to-r from-green to-blue-500 hover:scale-105 focus:outline-none"
           onClick={() => window.open("mailto:harshankkanungo259@gmail.com")}
