@@ -1,12 +1,5 @@
 import { Inter } from "next/font/google";
 import { services } from "../../data";
-// import {
-//   GetServerSideProps,
-//   GetServerSidePropsContext,
-//   GetStaticProps,
-//   GetStaticPropsContext,
-//   NextPage,
-// } from "next";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,14 +13,16 @@ const ServiceCard: React.FC<{ service: IService }> = ({ service }) => {
   const { Icon, title, about } = service;
 
   return (
-    <div className="flex items-center p-4 space-x-4 bg-gray-200 rounded-lg shadow-md dark:bg-dark-200">
-      <span className="w-12 h-12 text-green-500">
-        {" "}
-        <Icon />
-      </span>
-      <div>
-        <h5 className="text-lg font-semibold">{title}</h5>
-        <p className="text-sm text-black-200 dark:text-black-300">{about}</p>
+    <div className="group relative overflow-hidden bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500 transform hover:-translate-y-1">
+      <div className="absolute inset-0 bg-gradient-to-r from-green-50 to-blue-50 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+      <div className="relative z-10">
+        <div className="flex items-center mb-4">
+          <span className="w-12 h-12 flex items-center justify-center bg-gradient-to-r from-green-500 to-green-600 text-white rounded-lg shadow-lg transform group-hover:scale-110 transition-transform duration-500">
+            <Icon />
+          </span>
+          <h5 className="text-xl font-bold text-gray-800 ml-4 transform group-hover:translate-x-2 transition-transform duration-500">{title}</h5>
+        </div>
+        <p className="text-gray-600 leading-relaxed group-hover:text-gray-700 transition-colors duration-500">{about}</p>
       </div>
     </div>
   );
@@ -35,33 +30,51 @@ const ServiceCard: React.FC<{ service: IService }> = ({ service }) => {
 
 export default function Home() {
   return (
-    <main>
-      <div className="flex flex-col flex-grow px-6 pt-1">
-        <h6 className="my-3 text-base font-medium">
-          With over 1.4+ year of professional experience, including a 06-month
-          internship and 10+ months of hands-on work on real-time projects at
-          IndiaNic Infotech Limited, where I am currently employed, I am eager
-          to further advance my career. I am seeking a new opportunity where I
-          can contribute to the organization's growth, build on my existing
-          skills, and take on greater responsibilities. As a highly motivated
-          and dedicated professional, I am excited to bring my expertise and
-          enthusiasm to a dynamic role within a reputable company.
-        </h6>
+    <main className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        {/* Hero Section */}
+        <div className="relative overflow-hidden bg-white rounded-3xl shadow-2xl mb-12">
+          <div className="absolute inset-0 bg-gradient-to-r from-green-50 to-blue-50 opacity-50"></div>
+          <div className="relative z-10 p-8 sm:p-12">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-center mb-8">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-blue-600">
+                Welcome to My Portfolio
+              </span>
+            </h1>
+            <div className="max-w-4xl mx-auto">
+              <p className="text-lg sm:text-xl text-gray-700 leading-relaxed text-center">
+                With over <span className="font-semibold text-green-600">1.4+ years</span> of professional experience, 
+                including a <span className="font-semibold text-blue-600">06-month internship</span> and 
+                <span className="font-semibold text-green-600"> 10+ months</span> of hands-on work on real-time projects at 
+                <span className="font-semibold text-blue-600"> IndiaNic Infotech Limited</span>, I am eager to further advance my career. 
+                I am seeking new opportunities to contribute to organizational growth, enhance my skills, and take on greater responsibilities.
+              </p>
+            </div>
+          </div>
+          <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-green-500 via-blue-500 to-green-500"></div>
+        </div>
 
-        <div
-          className="flex-grow p-4 mt-5 bg-gray-400 rounded-lg dark:bg-dark-100"
-          style={{ marginLeft: "-1.5rem", marginRight: "-1.5rem" }}
-        >
-          <h4 className="my-3 text-xl font-semibold tracking-wide">
-            What I am doing
-          </h4>
+        {/* Services Section */}
+        <div className="space-y-8">
+          <div className="text-center">
+            <h2 className="inline-block text-3xl font-bold text-gray-800 mb-4 relative">
+              What I am doing
+              <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-green-500 to-blue-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
+            </h2>
+            <p className="text-gray-600 max-w-2xl mx-auto mb-12">
+              Exploring new technologies and creating innovative solutions
+            </p>
+          </div>
 
-          <div className="grid gap-6 my-3 md:grid-cols-2">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {services.map((service) => (
               <ServiceCard service={service} key={service.title} />
             ))}
           </div>
         </div>
+
+        {/* Bottom Gradient Line */}
+        <div className="mt-16 h-1 bg-gradient-to-r from-green-500 via-blue-500 to-green-500 rounded-full"></div>
       </div>
     </main>
   );

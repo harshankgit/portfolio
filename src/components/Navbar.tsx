@@ -1,30 +1,39 @@
-import React, { useState, useEffect, FunctionComponent } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-const NavbarItem: FunctionComponent<{
+const NavbarItem = ({ 
+  activeItem, 
+  setActiveItem, 
+  route, 
+  name 
+}: {
   activeItem: string;
   setActiveItem: (name: string) => void;
-  name: string;
   route: string;
-}> = ({ activeItem, setActiveItem, route, name }) => (
+  name: string;
+}) => (
   <Link href={route}>
-    <span
+    <div
       onClick={() => setActiveItem(name)}
-      className={`cursor-pointer px-3 py-2 rounded-md transition-all ${
-        activeItem === name
-          ? "bg-green-600 text-white"
-          : "text-gray-600 hover:bg-gray-200"
-      }`}
+      className={`relative px-4 py-2 rounded-lg transition-all duration-300 cursor-pointer group
+        ${activeItem === name
+          ? "bg-gradient-to-r from-green-500 to-green-600 text-white shadow-lg"
+          : "text-gray-600 hover:text-gray-800"
+        }`}
     >
-      {name}
-    </span>
+      <span className="relative z-10 font-medium">{name}</span>
+      {activeItem !== name && (
+        <div className="absolute inset-0 bg-gradient-to-r from-green-50 to-blue-50 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300"></div>
+      )}
+    </div>
   </Link>
 );
 
 const Navbar = () => {
   const [activeItem, setActiveItem] = useState<string>("");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const { pathname } = useRouter();
 
   useEffect(() => {
@@ -36,67 +45,87 @@ const Navbar = () => {
     setActiveItem(routeToName[pathname] || "");
   }, [pathname]);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
-    <nav className="p-4 shadow-md bg-white">
-      <div className="flex justify-between items-center">
-        {/* Active Item */}
-        <span className="text-xl font-bold text-green md:text-2xl">
-          {activeItem}
-        </span>
+    <nav className={`top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      isScrolled 
+        ? "bg-white/80 backdrop-blur-lg shadow-lg" 
+        : "bg-white shadow-sm"
+    }`}>
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-16">
+          {/* Logo/Brand */}
+          <div className="flex-shrink-0 group">
+            <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-green-600 to-blue-600 group-hover:from-blue-600 group-hover:to-green-600 transition-all duration-300">
+              {activeItem || "Portfolio"}
+            </span>
+          </div>
 
-        {/* Desktop Menu */}
-        <div className="hidden md:flex space-x-4">
-          {["About", "Projects", "Resume"].map((item) => (
-            <NavbarItem
-              key={item}
-              activeItem={activeItem}
-              setActiveItem={setActiveItem}
-              name={item}
-              route={`/${
-                item.toLowerCase() === "about" ? "" : item.toLowerCase()
-              }`}
-            />
-          ))}
-        </div>
+          {/* Desktop Menu */}
+          <div className="hidden md:flex md:items-center md:space-x-2">
+            {["About", "Projects", "Resume"].map((item) => (
+              <NavbarItem
+                key={item}
+                activeItem={activeItem}
+                setActiveItem={setActiveItem}
+                name={item}
+                route={`/${item.toLowerCase() === "about" ? "" : item.toLowerCase()}`}
+              />
+            ))}
+          </div>
 
-        {/* Mobile Menu Toggle */}
-        <button
-          className="md:hidden text-green-600"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
+          {/* Mobile Menu Button */}
+          <button
+            className="md:hidden inline-flex items-center justify-center p-2 rounded-lg text-gray-600 hover:bg-gradient-to-r hover:from-green-50 hover:to-blue-50 transition-all duration-300"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M4 6h16M4 12h16M4 18h16"
-            />
-          </svg>
-        </button>
-      </div>
-
-      {/* Mobile Menu */}
-      {isMobileMenuOpen && (
-        <div className="mt-4 flex flex-col space-y-2 md:hidden">
-          {["About", "Projects", "Resume"].map((item) => (
-            <NavbarItem
-              key={item}
-              activeItem={activeItem}
-              setActiveItem={setActiveItem}
-              name={item}
-              route={`/${
-                item.toLowerCase() === "about" ? "" : item.toLowerCase()
-              }`}
-            />
-          ))}
+            <svg
+              className="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d={isMobileMenuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"}
+              />
+            </svg>
+          </button>
         </div>
-      )}
+
+        {/* Mobile Menu */}
+        <div 
+          className={`md:hidden transform transition-all duration-300 ease-in-out ${
+            isMobileMenuOpen 
+              ? "opacity-100 translate-y-0" 
+              : "opacity-0 -translate-y-4 pointer-events-none"
+          }`}
+        >
+          <div className="px-2 pt-2 pb-3 space-y-2">
+            {["About", "Projects", "Resume"].map((item) => (
+              <NavbarItem
+                key={item}
+                activeItem={activeItem}
+                setActiveItem={(name) => {
+                  setActiveItem(name);
+                  setIsMobileMenuOpen(false);
+                }}
+                name={item}
+                route={`/${item.toLowerCase() === "about" ? "" : item.toLowerCase()}`}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
     </nav>
   );
 };
