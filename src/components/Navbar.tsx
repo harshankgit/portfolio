@@ -104,13 +104,13 @@ const Navbar = () => {
 
         {/* Mobile Menu */}
         <div 
-          className={`md:hidden transform transition-all duration-300 ease-in-out ${
+          className={`md:hidden w-full bg-white transition-all duration-300 ease-in-out ${
             isMobileMenuOpen 
-              ? "opacity-100 translate-y-0" 
-              : "opacity-0 -translate-y-4 pointer-events-none"
+              ? "h-auto opacity-100" 
+              : "h-0 opacity-0 overflow-hidden"
           }`}
         >
-          <div className="px-2 pt-2 pb-3 space-y-2">
+          <div className="px-4 py-2 space-y-2">
             {["About", "Projects", "Resume"].map((item) => (
               <NavbarItem
                 key={item}
