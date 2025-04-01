@@ -73,6 +73,29 @@ const projects = [
     demoLink: "https://todo-app.vercel.app",
     githubLink: "https://github.com/yourusername/todo-app",
   },
+
+  {
+    title: "Car Rental Website",
+    description:
+      "A user-friendly platform allowing customers to rent cars efficiently, filter by price, model, and location, and complete transactions securely.",
+    technologies: ["React.js", "Next.js", "MongoDB", "Authentication", "Payment Gateway"],
+    deployment: "Hosted on Vercel",
+    image:
+      "https://th.bing.com/th/id/OIP.KZ_u6iIKSiENDocHfGicrQHaEK?w=322&h=182&c=7&r=0&o=5&dpr=1.3&pid=1.7",
+    details:
+      "The car rental website provides an efficient platform to rent vehicles based on user preferences. It includes authentication, payment gateway integration, and seamless booking functionality.",
+  },
+  {
+    title: "E-Commerce Website",
+    description:
+      "An engaging and responsive e-commerce platform featuring product listing, shopping cart, authentication, and payment integration.",
+    technologies: ["React.js", "Next.js", "MongoDB", "Redux", "Stripe Payment"],
+    deployment: "Live on Vercel",
+    image:
+      "https://th.bing.com/th/id/OIP.tNzhvGRwyJqirlfAJxWC_wHaEk?w=303&h=187&c=7&r=0&o=5&dpr=1.3&pid=1.7",
+    details:
+      "The e-commerce website is a full-fledged platform supporting various product categories, an intuitive shopping experience, and a secure payment gateway.",
+  },
 ];
 
 const ProjectsPage = () => {
@@ -146,7 +169,7 @@ const ProjectsPage = () => {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 
-                <div className="absolute bottom-0 left-0 right-0 p-6 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                {/* <div className="absolute bottom-0 left-0 right-0 p-6 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
                   <div className="flex gap-4 justify-center">
                     <a
                       href={project.demoLink}
@@ -165,7 +188,7 @@ const ProjectsPage = () => {
                       <FaGithub className="w-5 h-5" />
                     </a>
                   </div>
-                </div>
+                </div> */}
               </div>
 
               <div className="p-6">

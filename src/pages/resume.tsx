@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { FaPhone, FaEnvelope, FaGlobe, FaMapMarkerAlt, FaChevronDown, FaChevronUp } from "react-icons/fa";
+import {
+  FaPhone,
+  FaEnvelope,
+  FaGlobe,
+  FaMapMarkerAlt,
+  FaChevronDown,
+  FaChevronUp,
+} from "react-icons/fa";
 
 const ResumePage = () => {
   const [showExperience, setShowExperience] = useState(true);
@@ -57,7 +64,7 @@ const ResumePage = () => {
         description:
           "Gained real-time experience in React.js, working on dynamic web applications and enhancing frontend capabilities.",
       },
-    
+
       {
         role: "Frontend Development Intern",
         company: "BasketHunt Pvt Ltd",
@@ -68,12 +75,20 @@ const ResumePage = () => {
     ],
   };
 
-  const SectionHeader = ({ title, isOpen, onClick }: { title: string; isOpen: boolean; onClick: () => void }) => (
+  const SectionHeader = ({
+    title,
+    isOpen,
+    onClick,
+  }: {
+    title: string;
+    isOpen: boolean;
+    onClick: () => void;
+  }) => (
     <div
       onClick={onClick}
       className="flex items-center justify-between cursor-pointer group mb-4"
     >
-      <h2 className="text-2xl font-bold text-gray-800 group-hover:text-green-600 transition-colors">
+      <h2 className="text-2xl font-bold text-gray-500 group-hover:text-green-600 transition-colors">
         {title}
       </h2>
       {isOpen ? (
@@ -85,65 +100,77 @@ const ResumePage = () => {
   );
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-50 py-12">
-      <div className="max-w-4xl mx-auto">
+    <div className="min-h-screen bg-gray-950 text-gray-200 p-8">
+      <div className="max-w-4xl mx-auto bg-gray-900 p-6 rounded-lg shadow-xl">
         {/* Header Section */}
-        <div className="bg-white rounded-t-2xl shadow-xl p-8 mb-6 transform hover:scale-[1.02] transition-all duration-300 border-b-4 border-green-500">
-          <h1 className="text-5xl font-bold text-center text-gray-800 mb-4 bg-clip-text text-transparent bg-gradient-to-r from-green-600 to-green-400">
+        <div className="bg-gray-800 rounded-t-2xl shadow-xl p-8 mb-6 transform hover:scale-[1.02] transition-all duration-300 border-b-4 border-green-500">
+          <h1 className="text-5xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-300">
             {personalDetails.name}
           </h1>
-          <p className="text-center text-gray-600 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-center text-gray-400 max-w-2xl mx-auto leading-relaxed">
             {personalDetails.profile}
           </p>
         </div>
 
         {/* Contact Information */}
-        <div className="bg-white rounded-2xl shadow-xl p-8 mb-6 hover:shadow-2xl transition-shadow duration-300">
-          <h2 className="text-2xl font-bold text-gray-800 mb-6">Contact Information</h2>
+        <div className="bg-gray-900 rounded-2xl shadow-xl p-8 mb-6 hover:shadow-2xl transition-shadow duration-300">
+          <h2 className="text-2xl font-bold text-gray-200 mb-6">
+            Contact Information
+          </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="flex items-center space-x-3 p-3 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors">
-              <FaPhone className="text-green-600 text-xl" />
+            <div className="flex items-center space-x-3 p-3 bg-gray-800 rounded-lg hover:bg-gray-700 transition-colors">
+              <FaPhone className="text-green-400 text-xl" />
               <div>
-                <p className="text-sm text-gray-500">Phone</p>
-                <p className="text-gray-700">{personalDetails.contact.phone.join(", ")}</p>
+                <p className="text-sm text-gray-400">Phone</p>
+                <p className="text-gray-300">
+                  {personalDetails.contact.phone.join(", ")}
+                </p>
               </div>
             </div>
-            <div className="flex items-center space-x-3 p-3 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors cursor-pointer"
-                 onClick={() => window.open("mailto:" + personalDetails.contact.email)}>
-              <FaEnvelope className="text-green-600 text-xl" />
+            <div
+              className="flex items-center space-x-3 p-3 bg-gray-800 rounded-lg hover:bg-gray-700 transition-colors cursor-pointer"
+              onClick={() =>
+                window.open("mailto:" + personalDetails.contact.email)
+              }
+            >
+              <FaEnvelope className="text-green-400 text-xl" />
               <div>
-                <p className="text-sm text-gray-500">Email</p>
-                <p className="text-gray-700">{personalDetails.contact.email}</p>
+                <p className="text-sm text-gray-400">Email</p>
+                <p className="text-gray-300">{personalDetails.contact.email}</p>
               </div>
             </div>
-            <div className="flex items-center space-x-3 p-3 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors">
-              <FaGlobe className="text-green-600 text-xl" />
+            <div className="flex items-center space-x-3 p-3 bg-gray-800 rounded-lg hover:bg-gray-700 transition-colors">
+              <FaGlobe className="text-green-400 text-xl" />
               <div>
-                <p className="text-sm text-gray-500">Website</p>
-                <a href="https://www.linkedin.com/in/harshank-kanungo-a4b178251/" 
-                   className="text-gray-700 hover:text-green-600 transition-colors">
+                <p className="text-sm text-gray-400">Website</p>
+                <a
+                  href="https://www.linkedin.com/in/harshank-kanungo-a4b178251/"
+                  className="text-gray-300 hover:text-green-400 transition-colors"
+                >
                   {personalDetails.contact.website}
                 </a>
               </div>
             </div>
-            <div className="flex items-center space-x-3 p-3 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors">
-              <FaMapMarkerAlt className="text-green-600 text-xl" />
+            <div className="flex items-center space-x-3 p-3 bg-gray-800 rounded-lg hover:bg-gray-700 transition-colors">
+              <FaMapMarkerAlt className="text-green-400 text-xl" />
               <div>
-                <p className="text-sm text-gray-500">Location</p>
-                <p className="text-gray-700">{personalDetails.contact.address}</p>
+                <p className="text-sm text-gray-400">Location</p>
+                <p className="text-gray-300">
+                  {personalDetails.contact.address}
+                </p>
               </div>
             </div>
           </div>
         </div>
 
         {/* Skills Section */}
-        <div className="bg-white rounded-2xl shadow-xl p-8 mb-6 hover:shadow-2xl transition-shadow duration-300">
-          <h2 className="text-2xl font-bold text-gray-800 mb-6">Skills</h2>
+        <div className="bg-gray-900 rounded-2xl shadow-xl p-8 mb-6 hover:shadow-2xl transition-shadow duration-300">
+          <h2 className="text-2xl font-bold text-gray-200 mb-6">Skills</h2>
           <div className="flex flex-wrap gap-3">
             {personalDetails.skills.map((skill, index) => (
               <span
                 key={index}
-                className="px-4 py-2 bg-gray-100 text-gray-800 rounded-full font-medium hover:bg-green-50 hover:text-green-700 hover:scale-105 transform transition-all duration-200"
+                className="px-4 py-2 bg-gray-800 text-gray-300 rounded-full font-medium hover:bg-green-700 hover:text-white hover:scale-105 transform transition-all duration-200"
               >
                 {skill}
               </span>
@@ -152,7 +179,7 @@ const ResumePage = () => {
         </div>
 
         {/* Experience Section */}
-        <div className="bg-white rounded-2xl shadow-xl p-8 mb-6 hover:shadow-2xl transition-shadow duration-300">
+        <div className="bg-gray-900 rounded-2xl shadow-xl p-8 mb-6 hover:shadow-2xl transition-shadow duration-300">
           <SectionHeader
             title="Work Experience"
             isOpen={showExperience}
@@ -163,14 +190,20 @@ const ResumePage = () => {
               {personalDetails.experience.map((exp, index) => (
                 <div
                   key={index}
-                  className="p-6 bg-gray-100 rounded-xl hover:shadow-md transition-all duration-300 border-l-4 border-green-500"
+                  className="p-6 bg-gray-800 rounded-xl hover:shadow-md transition-all duration-300 border-l-4 border-green-500"
                 >
                   <div className="flex justify-between items-start mb-2">
-                    <h3 className="text-xl font-bold text-green-600">{exp.role}</h3>
-                    <span className="text-sm text-gray-500">{exp.duration}</span>
+                    <h3 className="text-xl font-bold text-green-400">
+                      {exp.role}
+                    </h3>
+                    <span className="text-sm text-gray-400">
+                      {exp.duration}
+                    </span>
                   </div>
-                  <p className="text-lg text-gray-800 mb-2">{exp.company}</p>
-                  <p className="text-gray-600 leading-relaxed">{exp.description}</p>
+                  <p className="text-lg text-gray-200 mb-2">{exp.company}</p>
+                  <p className="text-gray-300 leading-relaxed">
+                    {exp.description}
+                  </p>
                 </div>
               ))}
             </div>
@@ -178,7 +211,7 @@ const ResumePage = () => {
         </div>
 
         {/* Education Section */}
-        <div className="bg-white rounded-2xl shadow-xl p-8 mb-6 hover:shadow-2xl transition-shadow duration-300">
+        <div className="bg-gray-900 rounded-2xl shadow-xl p-8 mb-6 hover:shadow-2xl transition-shadow duration-300">
           <SectionHeader
             title="Education"
             isOpen={showEducation}
@@ -189,13 +222,19 @@ const ResumePage = () => {
               {personalDetails.education.map((edu, index) => (
                 <div
                   key={index}
-                  className="p-6 bg-gray-100 rounded-xl hover:shadow-md transition-all duration-300 border-l-4 border-green-500"
+                  className="p-6 bg-gray-800 rounded-xl hover:shadow-md transition-all duration-300 border-l-4 border-green-500"
                 >
-                  <h3 className="text-xl font-bold text-gray-800 mb-2">{edu.degree}</h3>
-                  <p className="text-lg text-gray-700 mb-1">{edu.institution}</p>
+                  <h3 className="text-xl font-bold text-gray-200 mb-2">
+                    {edu.degree}
+                  </h3>
+                  <p className="text-lg text-gray-300 mb-1">
+                    {edu.institution}
+                  </p>
                   <div className="flex justify-between items-center">
-                    <span className="text-gray-500">{edu.duration}</span>
-                    <span className="text-green-600 font-semibold">{edu.grade}</span>
+                    <span className="text-gray-400">{edu.duration}</span>
+                    <span className="text-green-400 font-semibold">
+                      {edu.grade}
+                    </span>
                   </div>
                 </div>
               ))}
@@ -204,7 +243,7 @@ const ResumePage = () => {
         </div>
 
         {/* Languages Section */}
-        <div className="bg-white rounded-2xl shadow-xl p-8 mb-6 hover:shadow-2xl transition-shadow duration-300">
+        <div className="bg-gray-900 rounded-2xl shadow-xl p-8 mb-6 hover:shadow-2xl transition-shadow duration-300">
           <SectionHeader
             title="Languages"
             isOpen={showLanguage}
@@ -212,24 +251,24 @@ const ResumePage = () => {
           />
           {showLanguage && (
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-              <div className="p-4 bg-gray-100 rounded-xl hover:bg-gray-200 transition-colors border-l-4 border-green-500">
-                <h3 className="font-semibold text-gray-800">English</h3>
-                <p className="text-gray-600">Professional</p>
+              <div className="p-4 bg-gray-800 rounded-xl hover:bg-gray-700 transition-colors border-l-4 border-green-500">
+                <h3 className="font-semibold text-gray-200">English</h3>
+                <p className="text-gray-400">Professional</p>
               </div>
-              <div className="p-4 bg-gray-100 rounded-xl hover:bg-gray-200 transition-colors border-l-4 border-green-500">
-                <h3 className="font-semibold text-gray-800">Hindi</h3>
-                <p className="text-gray-600">Native</p>
+              <div className="p-4 bg-gray-800 rounded-xl hover:bg-gray-700 transition-colors border-l-4 border-green-500">
+                <h3 className="font-semibold text-gray-200">Hindi</h3>
+                <p className="text-gray-400">Native</p>
               </div>
-              <div className="p-4 bg-gray-100 rounded-xl hover:bg-gray-200 transition-colors border-l-4 border-green-500">
-                <h3 className="font-semibold text-gray-800">Gujarati</h3>
-                <p className="text-gray-600">Intermediate</p>
+              <div className="p-4 bg-gray-800 rounded-xl hover:bg-gray-700 transition-colors border-l-4 border-green-500">
+                <h3 className="font-semibold text-gray-200">Gujarati</h3>
+                <p className="text-gray-400">Intermediate</p>
               </div>
             </div>
           )}
         </div>
 
         {/* Certificates Section */}
-        <div className="bg-white rounded-2xl shadow-xl p-8 mb-6 hover:shadow-2xl transition-shadow duration-300">
+        <div className="bg-gray-900 rounded-2xl shadow-xl p-8 mb-6 hover:shadow-2xl transition-shadow duration-300">
           <SectionHeader
             title="Certificates"
             isOpen={showCertificates}
@@ -237,20 +276,32 @@ const ResumePage = () => {
           />
           {showCertificates && (
             <div className="space-y-6">
-              <div className="p-6 bg-gray-100 rounded-xl hover:shadow-md transition-all duration-300 border-l-4 border-green-500">
-                <h3 className="text-xl font-bold text-gray-800 mb-2">Frontend Web Development Using JavaScript and React Bootcamp</h3>
-                <p className="text-lg text-gray-700 mb-1">Institution: Bootcamp</p>
-                <p className="text-gray-500">Date: 2023</p>
+              <div className="p-6 bg-gray-800 rounded-xl hover:shadow-md transition-all duration-300 border-l-4 border-green-500">
+                <h3 className="text-xl font-bold text-gray-200 mb-2">
+                  Frontend Web Development Using JavaScript and React Bootcamp
+                </h3>
+                <p className="text-lg text-gray-300 mb-1">
+                  Institution: Bootcamp
+                </p>
+                <p className="text-gray-400">Date: 2023</p>
               </div>
-              <div className="p-6 bg-gray-100 rounded-xl hover:shadow-md transition-all duration-300 border-l-4 border-green-500">
-                <h3 className="text-xl font-bold text-gray-800 mb-2">Instagram Clone Using HTML & CSS Bootcamp</h3>
-                <p className="text-lg text-gray-700 mb-1">Institution: Bootcamp</p>
-                <p className="text-gray-500">Date: 2023</p>
+              <div className="p-6 bg-gray-800 rounded-xl hover:shadow-md transition-all duration-300 border-l-4 border-green-500">
+                <h3 className="text-xl font-bold text-gray-200 mb-2">
+                  Instagram Clone Using HTML & CSS Bootcamp
+                </h3>
+                <p className="text-lg text-gray-300 mb-1">
+                  Institution: Bootcamp
+                </p>
+                <p className="text-gray-400">Date: 2023</p>
               </div>
-              <div className="p-6 bg-gray-100 rounded-xl hover:shadow-md transition-all duration-300 border-l-4 border-green-500">
-                <h3 className="text-xl font-bold text-gray-800 mb-2">Frontend Training from Open Weaver</h3>
-                <p className="text-lg text-gray-700 mb-1">Institution: Open Weaver</p>
-                <p className="text-gray-500">Date: 2023</p>
+              <div className="p-6 bg-gray-800 rounded-xl hover:shadow-md transition-all duration-300 border-l-4 border-green-500">
+                <h3 className="text-xl font-bold text-gray-200 mb-2">
+                  Frontend Training from Open Weaver
+                </h3>
+                <p className="text-lg text-gray-300 mb-1">
+                  Institution: Open Weaver
+                </p>
+                <p className="text-gray-400">Date: 2023</p>
               </div>
             </div>
           )}
