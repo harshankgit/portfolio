@@ -17,13 +17,77 @@ import {
 } from "react-icons/fa";
 import { motion } from "framer-motion";
 
-const ResumePage = () => {
-  const [showExperience, setShowExperience] = useState(true);
-  const [showEducation, setShowEducation] = useState(true);
-  const [showLanguage, setShowLanguage] = useState(true);
-  const [showCertificates, setShowCertificates] = useState(true);
-  const [showProjects, setShowProjects] = useState(true);
-  const [isLoading, setIsLoading] = useState(true);
+interface SectionHeaderProps {
+  title: string;
+  isOpen: boolean;
+  onClick: () => void;
+  icon: React.ReactNode;
+}
+
+interface Responsibility {
+  [key: number]: string;
+}
+
+interface Experience {
+  role: string;
+  company: string;
+  duration: string;
+  description: string;
+  responsibilities: string[];
+}
+
+interface Education {
+  degree: string;
+  institution: string;
+  duration: string;
+  grade: string;
+  description: string;
+}
+
+interface Project {
+  title: string;
+  description: string;
+  technologies: string[];
+  duration: string;
+}
+
+interface Skill {
+  name: string;
+  level: number;
+}
+
+interface Social {
+  github: string;
+  linkedin: string;
+  twitter?: string;
+}
+
+interface Contact {
+  phone: string[];
+  email: string;
+  website: string;
+  address: string;
+  social: Social;
+}
+
+interface PersonalDetails {
+  name: string;
+  title: string;
+  contact: Contact;
+  profile: string;
+  skills: Skill[];
+  education: Education[];
+  experience: Experience[];
+  projects: Project[];
+}
+
+const ResumePage: React.FC = () => {
+  const [showExperience, setShowExperience] = useState<boolean>(true);
+  const [showEducation, setShowEducation] = useState<boolean>(true);
+  const [showLanguage, setShowLanguage] = useState<boolean>(true);
+  const [showCertificates, setShowCertificates] = useState<boolean>(true);
+  const [showProjects, setShowProjects] = useState<boolean>(true);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
     // Simulate loading time
@@ -33,7 +97,7 @@ const ResumePage = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  const personalDetails = {
+  const personalDetails: PersonalDetails = {
     name: "Harshank Kanungo",
     title: "Frontend Developer",
     contact: {
@@ -161,14 +225,12 @@ const ResumePage = () => {
     },
   };
 
-  interface SectionHeaderProps {
-    title: string;
-    isOpen: boolean;
-    onClick: () => void;
-    icon: React.ReactNode;
-  }
-
-  const SectionHeader = ({ title, isOpen, onClick, icon }: SectionHeaderProps) => (
+  const SectionHeader: React.FC<SectionHeaderProps> = ({
+    title,
+    isOpen,
+    onClick,
+    icon,
+  }) => (
     <motion.div
       onClick={onClick}
       className="flex items-center justify-between cursor-pointer group mb-4"
@@ -207,6 +269,9 @@ const ResumePage = () => {
       </div>
     );
   }
+  const handleEmailClick = (email:any) => {
+    window.open(`mailto:${email}`, '_blank');
+  };
 
   return (
     <div className="min-h-screen bg-gray-950 text-gray-200 p-4 md:p-8">
@@ -249,7 +314,6 @@ const ResumePage = () => {
                   <FaGithub size={24} />
                 </motion.a>
                 <motion.a
-                  // href={`https://${personalDetails.contact.social.linkedin}`}
                   href="https://www.linkedin.com/in/harshank-kanungo-a4b178251/"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -285,83 +349,91 @@ const ResumePage = () => {
         <div className="p-6">
           {/* Contact Information */}
           <motion.div
-            className="bg-gray-800 rounded-2xl shadow-xl p-6 mb-6"
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-            whileHover={{ boxShadow: "0 0 15px rgba(72, 187, 120, 0.3)" }}
-          >
-            <h2 className="text-2xl font-bold text-gray-200 mb-6 flex items-center">
-              <FaPhone className="mr-2 text-green-400" />
-              Contact Information
-            </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <motion.div
-                variants={itemVariants}
-                className="flex items-center space-x-3 p-4 bg-gray-900 rounded-lg hover:bg-gray-700 transition-colors"
-              >
-                <div className="bg-gray-700 p-3 rounded-full">
-                  <FaPhone className="text-green-400 text-xl" />
-                </div>
-                <div>
-                  <p className="text-sm text-gray-400">Phone</p>
-                  <p className="text-gray-300">
-                    {personalDetails.contact.phone.join(", ")}
-                  </p>
-                </div>
-              </motion.div>
-              <motion.div
-                variants={itemVariants}
-                className="flex items-center space-x-3 p-4 bg-gray-900 rounded-lg hover:bg-gray-700 transition-colors cursor-pointer"
-                onClick={() =>
-                  window.open("mailto:" + personalDetails.contact.email)
-                }
-              >
-                <div className="bg-gray-700 p-3 rounded-full">
-                  <FaEnvelope className="text-green-400 text-xl" />
-                </div>
-                <div>
-                  <p className="text-sm text-gray-400">Email</p>
-                  <p className="text-gray-300">
-                    {personalDetails.contact.email}
-                  </p>
-                </div>
-              </motion.div>
-              <motion.div
-                variants={itemVariants}
-                className="flex items-center space-x-3 p-4 bg-gray-900 rounded-lg hover:bg-gray-700 transition-colors"
-              >
-                <div className="bg-gray-700 p-3 rounded-full">
-                  <FaGlobe className="text-green-400 text-xl" />
-                </div>
-                <div>
-                  <p className="text-sm text-gray-400">Website</p>
-                  <a
-                    href="https://www.linkedin.com/in/harshank-kanungo-a4b178251/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-gray-300 hover:text-green-400 transition-colors"
-                  >
-                    {personalDetails.contact.website}
-                  </a>
-                </div>
-              </motion.div>
-              <motion.div
-                variants={itemVariants}
-                className="flex items-center space-x-3 p-4 bg-gray-900 rounded-lg hover:bg-gray-700 transition-colors"
-              >
-                <div className="bg-gray-700 p-3 rounded-full">
-                  <FaMapMarkerAlt className="text-green-400 text-xl" />
-                </div>
-                <div>
-                  <p className="text-sm text-gray-400">Location</p>
-                  <p className="text-gray-300">
-                    {personalDetails.contact.address}
-                  </p>
-                </div>
-              </motion.div>
-            </div>
-          </motion.div>
+      className="bg-gray-800 rounded-2xl shadow-xl p-4 sm:p-6 mb-6 w-full"
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+      whileHover={{ boxShadow: "0 0 15px rgba(72, 187, 120, 0.3)" }}
+    >
+      <h2 className="text-xl sm:text-2xl font-bold text-gray-200 mb-4 sm:mb-6 flex items-center">
+        <FaPhone className="mr-2 text-green-400" />
+        Contact Information
+      </h2>
+      
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+        {/* Phone */}
+        <motion.div
+          variants={itemVariants}
+          className="flex items-center space-x-3 p-3 sm:p-4 bg-gray-900 rounded-lg hover:bg-gray-700 transition-colors"
+        >
+          <div className="bg-gray-700 p-2 sm:p-3 rounded-full flex-shrink-0">
+            <FaPhone className="text-green-400 text-lg sm:text-xl" />
+          </div>
+          <div className="overflow-hidden">
+            <p className="text-xs sm:text-sm text-gray-400">Phone</p>
+            <p className="text-sm sm:text-base text-gray-300 truncate">
+              {personalDetails.contact.phone.join(", ")}
+            </p>
+          </div>
+        </motion.div>
+        
+        {/* Email */}
+        <motion.div
+          variants={itemVariants}
+          className="flex items-center space-x-3 p-3 sm:p-4 bg-gray-900 rounded-lg hover:bg-gray-700 transition-colors cursor-pointer"
+          onClick={() => handleEmailClick(personalDetails.contact.email)}
+          whileTap={{ scale: 0.98 }}
+          whileHover={{ scale: 1.02 }}
+        >
+          <div className="bg-gray-700 p-2 sm:p-3 rounded-full flex-shrink-0">
+            <FaEnvelope className="text-green-400 text-lg sm:text-xl" />
+          </div>
+          <div className="overflow-hidden max-w-full">
+            <p className="text-xs sm:text-sm text-gray-400">Email</p>
+            <p className="text-sm sm:text-base text-gray-300 truncate group-hover:text-green-400 transition-colors">
+              {personalDetails.contact.email}
+            </p>
+          </div>
+        </motion.div>
+        
+        {/* Website */}
+        <motion.div
+          variants={itemVariants}
+          className="flex items-center space-x-3 p-3 sm:p-4 bg-gray-900 rounded-lg hover:bg-gray-700 transition-colors"
+        >
+          <div className="bg-gray-700 p-2 sm:p-3 rounded-full flex-shrink-0">
+            <FaGlobe className="text-green-400 text-lg sm:text-xl" />
+          </div>
+          <div className="overflow-hidden">
+            <p className="text-xs sm:text-sm text-gray-400">Website</p>
+            <a
+              href="https://www.linkedin.com/in/harshank-kanungo-a4b178251/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm sm:text-base text-gray-300 hover:text-green-400 transition-colors truncate block"
+            >
+              {personalDetails.contact.website}
+            </a>
+          </div>
+        </motion.div>
+        
+        {/* Location */}
+        <motion.div
+          variants={itemVariants}
+          className="flex items-center space-x-3 p-3 sm:p-4 bg-gray-900 rounded-lg hover:bg-gray-700 transition-colors"
+        >
+          <div className="bg-gray-700 p-2 sm:p-3 rounded-full flex-shrink-0">
+            <FaMapMarkerAlt className="text-green-400 text-lg sm:text-xl" />
+          </div>
+          <div className="overflow-hidden">
+            <p className="text-xs sm:text-sm text-gray-400">Location</p>
+            <p className="text-sm sm:text-base text-gray-300 truncate">
+              {personalDetails.contact.address}
+            </p>
+          </div>
+        </motion.div>
+      </div>
+    </motion.div>
 
           {/* Skills Section */}
           <motion.div
@@ -395,8 +467,13 @@ const ResumePage = () => {
                       className="bg-gradient-to-r from-green-500 to-cyan-500 h-2.5 rounded-full"
                       style={{ width: `${skill.level}%` }}
                       initial={{ width: 0 }}
+                      animate={{ width: 0 }}
                       whileInView={{ width: `${skill.level}%` }}
-                      transition={{ duration: 1, delay: 0.1 }}
+                      transition={{
+                        duration: 1,
+                        delay: 0.1,
+                        ease: [0.87, 0, 0.13, 1], // Custom easing for smoother animation
+                      }}
                       viewport={{ once: true }}
                     ></motion.div>
                   </div>
@@ -432,7 +509,10 @@ const ResumePage = () => {
                     key={index}
                     className="p-6 bg-gray-900 rounded-xl border-l-4 border-green-500 hover:border-cyan-400 transition-all duration-300"
                     variants={itemVariants}
-                    whileHover={{ x: 5 }}
+                    whileHover={{
+                      x: 5,
+                      boxShadow: "0 4px 12px rgba(16, 185, 129, 0.2)",
+                    }}
                   >
                     <div className="flex flex-col md:flex-row justify-between items-start mb-2">
                       <motion.h3
@@ -512,12 +592,21 @@ const ResumePage = () => {
                       </p>
                       <div className="flex flex-wrap gap-2">
                         {project.technologies.map((tech, idx) => (
-                          <span
+                          <motion.span
                             key={idx}
                             className="px-2 py-1 bg-gray-700 text-green-300 text-xs rounded-full"
+                            whileHover={{
+                              scale: 1.1,
+                              backgroundColor: "rgba(45, 55, 72, 1)",
+                            }}
+                            transition={{
+                              type: "spring",
+                              stiffness: 500,
+                              damping: 10,
+                            }}
                           >
                             {tech}
-                          </span>
+                          </motion.span>
                         ))}
                       </div>
                     </div>
@@ -565,9 +654,11 @@ const ResumePage = () => {
                     <p className="text-lg text-gray-300 mb-1">
                       {edu.institution}
                     </p>
-                    <div className="flex justify-between items-center mb-3">
-                      <span className="text-gray-400">{edu.duration}</span>
-                      <span className="text-green-400 font-semibold">
+                    <div className="flex flex-wrap justify-between items-center mb-3">
+                      <span className="text-gray-400 text-sm">
+                        {edu.duration}
+                      </span>
+                      <span className="text-green-400 font-semibold text-sm mt-1 sm:mt-0">
                         {edu.grade}
                       </span>
                     </div>
@@ -614,7 +705,10 @@ const ResumePage = () => {
                       className="bg-gradient-to-r from-green-500 to-cyan-500 h-2.5 rounded-full"
                       initial={{ width: 0 }}
                       whileInView={{ width: "75%" }}
-                      transition={{ duration: 1 }}
+                      transition={{
+                        duration: 1,
+                        ease: [0.34, 1.56, 0.64, 1], // Custom spring-like easing
+                      }}
                       viewport={{ once: true }}
                       style={{ width: "75%" }}
                     ></motion.div>
@@ -634,7 +728,10 @@ const ResumePage = () => {
                       className="bg-gradient-to-r from-green-500 to-cyan-500 h-2.5 rounded-full"
                       initial={{ width: 0 }}
                       whileInView={{ width: "100%" }}
-                      transition={{ duration: 1 }}
+                      transition={{
+                        duration: 1,
+                        ease: [0.34, 1.56, 0.64, 1], // Custom spring-like easing
+                      }}
                       viewport={{ once: true }}
                       style={{ width: "100%" }}
                     ></motion.div>
