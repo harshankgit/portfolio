@@ -231,7 +231,7 @@ const ProjectsPage = () => {
                 initial={{ y: -20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.2, duration: 0.6 }}
-                className="text-6xl font-extrabold mb-4 bg-gradient-to-r from-purple-500 via-blue-500 to-cyan-400 text-transparent bg-clip-text"
+                className="text-[3rem] font-extrabold mb-4 bg-gradient-to-r from-purple-500 via-blue-500 to-cyan-400 text-transparent bg-clip-text"
               >
                 My Projects
               </motion.h1>
